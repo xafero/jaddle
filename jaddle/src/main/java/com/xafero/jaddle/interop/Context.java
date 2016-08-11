@@ -9,6 +9,7 @@ import javax.script.Bindings;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.net.URL;
+import java.util.Map;
 
 public class Context {
 
@@ -18,15 +19,18 @@ public class Context {
     private final String[] args;
     private final ScriptEngine engine;
     private final Bindings context;
-
+    private final Map<?, ?> env;
+    
     public Context(Class<?> clazz, ClassLoader loader, File cwd,
-            String[] args, ScriptEngine engine, Bindings ctx) {
+            String[] args, ScriptEngine engine, Bindings ctx, 
+            Map<?, ?> env) {
         this.clazz = clazz;
         this.loader = loader;
         this.workingDir = cwd;
         this.args = args;
         this.engine = engine;
         this.context = ctx;
+        this.env = env;
     }
 
     public String[] getArgs() {
@@ -53,6 +57,10 @@ public class Context {
         return engine;
     }
 
+    public Map<?, ?> getEnv() {
+        return env;
+    }
+    
     public Object require(String path) throws IOException, ScriptException {
         try (InputStream in = loader.getResourceAsStream(path)) {
             if (in == null) {

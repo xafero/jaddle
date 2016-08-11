@@ -3,7 +3,7 @@
 
     with (imports) {
         return {
-            exec: function (work, args) {
+            exec: function (work, args, env) {
                 var bld = new ProcessBuilder(args);
                 bld.directory(work);
                 bld.redirectErrorStream(true);

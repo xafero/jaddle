@@ -42,7 +42,7 @@
     		return files;
     	};
         return {
-            exec: function (work, args) {
+            exec: function (work, args, env) {
             	for (var i = 0; i < args.length; i++) {
 					var url = args[i];
 					download(work, parseHtml(url));

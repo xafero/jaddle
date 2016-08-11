@@ -43,7 +43,7 @@
                 var work = ctx.workingDir;
                 if (line.hasOption('w'))
                     work = new File(line.getOptionValue('w'));
-                taskMod.runTasks(work, vals, opts);
+                taskMod.runTasks(work, vals, opts, ctx.getEnv());
                 return;
             }
         } catch (err) {
