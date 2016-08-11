@@ -20,8 +20,15 @@
                     print(" * " + task);
             },
             runTasks: function (ids) {
-                for (var i = 0; i < ids.length; i++)
-                    print(ids[i]);
+                for (var i = 0; i < ids.length; i++) {
+                    var id = ids[i];
+                    var src = tasks[id];
+                    var task = ctx.require(src);
+
+                    print(task)
+                    print(src)
+
+                }
             }
         };
     }

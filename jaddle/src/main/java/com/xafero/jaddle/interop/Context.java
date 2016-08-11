@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import java.net.URL;
 
 public class Context {
 
@@ -57,9 +58,19 @@ public class Context {
             if (in == null) {
                 throw new FileNotFoundException(path);
             }
-            try (InputStreamReader reader = new InputStreamReader(in, "UTF8")) {
-                return engine.eval(reader, context);
-            }
+            return require(in);
+        }
+    }
+
+    public Object require(URL url) throws IOException, ScriptException {
+        try (InputStream in = url.openStream()) {
+            return require(in);
+        }
+    }
+
+    public Object require(InputStream in) throws IOException, ScriptException {
+        try (InputStreamReader reader = new InputStreamReader(in, "UTF8")) {
+            return engine.eval(reader, context);
         }
     }
 }
