@@ -3,9 +3,9 @@
 
     with (imports) {
         return {
-            exec: function (args) {
+            exec: function (work, args) {
                 var bld = new ProcessBuilder(args);
-                bld.directory(ctx.workingDir);
+                bld.directory(work);
                 bld.redirectErrorStream(true);
                 var env = bld.environment();
                 var proc = bld.start();

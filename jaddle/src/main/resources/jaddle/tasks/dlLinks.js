@@ -23,10 +23,10 @@
 			input.close();
     		return urls;
     	};
-    	var download = function(urls) {
+    	var download = function(work, urls) {
     		var files = new TreeSet();    		
     		for each (var url in urls) {
-    			var file = new File('DL' + '/' + url.toURL().getFile());
+    			var file = new File(work, url.toURL().getFile());
     			if (file.exists() && file.canRead())
     				continue;
     			var input = url.toURL().openStream();
@@ -42,10 +42,10 @@
     		return files;
     	};
         return {
-            exec: function (args) {
+            exec: function (work, args) {
             	for (var i = 0; i < args.length; i++) {
 					var url = args[i];
-					download(parseHtml(url));
+					download(work, parseHtml(url));
             	}
             }
         }

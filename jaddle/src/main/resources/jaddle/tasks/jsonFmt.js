@@ -3,7 +3,7 @@
 
 	with (imports) {
 		return {
-			exec: function(args) {
+			exec: function(work, args) {
 				for (var i = 0; i < args.length; i++) {
 					var folder = new File(args[i]);
 					var parser = new JsonParser();
