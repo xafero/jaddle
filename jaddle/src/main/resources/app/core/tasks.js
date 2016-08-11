@@ -23,11 +23,8 @@
                 for (var i = 0; i < ids.length; i++) {
                     var id = ids[i];
                     var src = tasks[id];
-                    var task = ctx.require(src);
-
-                    print(task)
-                    print(src)
-
+                    var task = ctx.require(src)();
+                    task.exec();
                 }
             }
         };

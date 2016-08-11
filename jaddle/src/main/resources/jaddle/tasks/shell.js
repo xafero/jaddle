@@ -1,7 +1,8 @@
 (function () {
     return {
-        test: function () {
-            print("hui!");
+        exec: function (args) {
+            for (var a in args)
+                print(a);
         }
-    }
+    };
 });
