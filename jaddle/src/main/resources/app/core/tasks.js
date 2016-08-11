@@ -19,12 +19,12 @@
                 for (var task in tasks)
                     print(" * " + task);
             },
-            runTasks: function (ids) {
+            runTasks: function (ids, args) {
                 for (var i = 0; i < ids.length; i++) {
                     var id = ids[i];
                     var src = tasks[id];
                     var task = ctx.require(src)();
-                    task.exec();
+                    task.exec(args);
                 }
             }
         };

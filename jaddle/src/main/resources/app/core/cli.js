@@ -7,12 +7,15 @@
         var tasks = new Option('t', 'tasks', false, 'list available tasks');
         var runTask = new Option('r', 'run', true, 'execute selected task(s)');
         runTask.setArgs(Option.UNLIMITED_VALUES);
+        var switches = new Option('o', 'opts', true, 'specify task option(s)');
+        switches.setArgs(Option.UNLIMITED_VALUES);
 
         // Collect options
         var options = new Options();
         options.addOption(help);
         options.addOption(tasks);
         options.addOption(runTask);
+        options.addOption(switches);
 
         // Get modules
         var taskMod = ctx.require('app/core/tasks.js')();
@@ -32,7 +35,10 @@
             }
             if (line.hasOption('r')) {
                 var vals = line.getOptionValues('r');
-                taskMod.runTasks(vals);
+                var opts = [];
+                if (line.hasOption('o'))
+                    opts = line.getOptionValues('o');
+                taskMod.runTasks(vals, opts);
                 return;
             }
         } catch (err) {
