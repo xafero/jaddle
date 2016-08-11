@@ -5,7 +5,7 @@
 
     with (imports) {
         var resolver = new PathMatchingResourcePatternResolver();
-        var resources = resolver.getResources("classpath*:jaddle/tasks/**/*.js");
+        var resources = resolver.getResources('classpath*:jaddle/tasks/**/*.js');
 
         for (var i = 0; i < resources.length; i++) {
             var resource = resources[i];
@@ -17,7 +17,7 @@
         return {
             listTasks: function () {
                 for (var task in tasks)
-                    print(" * " + task);
+                    print(' * ' + task);
             },
             runTasks: function (ids, args) {
                 for (var i = 0; i < ids.length; i++) {

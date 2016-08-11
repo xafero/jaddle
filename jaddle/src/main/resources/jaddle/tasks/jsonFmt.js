@@ -20,7 +20,7 @@
 						writer.flush();
 						writer.close();
 						reader.close();
-						print("Reformatted: " + file)
+						print('Reformatted: ' + file)
 					}
 				}
 			}
