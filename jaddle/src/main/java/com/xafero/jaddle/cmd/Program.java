@@ -26,7 +26,12 @@ public class Program {
         Map<?, ?> env = new LinkedHashMap<>(System.getProperties());
         Context ctx = new Context(clazz, loader, cwd, args, engine, bnd, env);
         bnd.put("ctx", ctx);
-        bnd.put("db", new Database());
+        // Set data storage
+        String home = System.getProperty("user.home");
+        File global = new File(home, "global.db");
+        File local = new File(cwd, "local.db");
+        Database db = new Database(global, local);
+        bnd.put("db", db);
         // Load booter
         ctx.require("app/core/boot.js");
     }
