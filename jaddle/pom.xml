@@ -35,13 +35,22 @@
             <version>2.5</version>
         </dependency>
         <dependency>
-        	<groupId>com.google.code.gson</groupId>
-        	<artifactId>gson</artifactId>
-        	<version>2.7</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xafero</groupId>
+            <artifactId>bodega</artifactId>
+            <version>b8aafe9907</version>
         </dependency>
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <build>

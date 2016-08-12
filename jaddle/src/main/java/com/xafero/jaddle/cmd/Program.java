@@ -1,6 +1,7 @@
 package com.xafero.jaddle.cmd;
 
 import com.xafero.jaddle.interop.Context;
+import com.xafero.jaddle.interop.Database;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -25,6 +26,7 @@ public class Program {
         Map<?, ?> env = new LinkedHashMap<>(System.getProperties());
         Context ctx = new Context(clazz, loader, cwd, args, engine, bnd, env);
         bnd.put("ctx", ctx);
+        bnd.put("db", new Database());
         // Load booter
         ctx.require("app/core/boot.js");
     }
