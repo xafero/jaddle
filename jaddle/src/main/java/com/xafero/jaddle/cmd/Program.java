@@ -2,10 +2,13 @@ package com.xafero.jaddle.cmd;
 
 import com.xafero.jaddle.interop.Context;
 import com.xafero.jaddle.interop.Database;
+import com.xafero.jaddle.interop.JSystem;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -32,6 +35,8 @@ public class Program {
         File local = new File(cwd, "local.db");
         Database db = new Database(global, local);
         bnd.put("db", db);
+        // Set system
+        bnd.put("sys", new JSystem());
         // Load booter
         ctx.require("app/core/boot.js");
     }
