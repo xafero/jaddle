@@ -34,13 +34,15 @@
                 for (var task in tasks)
                     print(' * ' + task);
             },
+            getTask: function (id) {
+            	var src = tasks[id];
+            	return ctx.require(src)();
+            },
             runTasks: function (work, ids, args, env) {
             	updateOnWork(work);
                 for (var i = 0; i < ids.length; i++) {
-                    var id = ids[i];
-                    var src = tasks[id];
-                    var task = ctx.require(src)();
-                    task.exec(work, args, env);
+                    var task = this.getTask(ids[i]);
+                    task.exec(work, args, env, this);
                 }
             }
         };
