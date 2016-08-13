@@ -32,7 +32,10 @@
                 return;
             }
             if (line.hasOption('t')) {
-                taskMod.listTasks();
+                var work = ctx.workingDir;
+                if (line.hasOption('w'))
+                    work = new File(line.getOptionValue('w'));
+                taskMod.listTasks(work);
                 return;
             }
             if (line.hasOption('r')) {
