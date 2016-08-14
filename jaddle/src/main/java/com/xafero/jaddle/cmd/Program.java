@@ -26,7 +26,8 @@ public class Program {
         File cwd = (new File("")).getAbsoluteFile();
         // Inject them
         Bindings bnd = engine.createBindings();
-        Map<?, ?> env = new LinkedHashMap<>(System.getProperties());
+        Map<Object, Object> env = new LinkedHashMap<>(System.getProperties());
+        env.putAll(System.getenv());
         Context ctx = new Context(clazz, loader, cwd, args, engine, bnd, env);
         bnd.put("ctx", ctx);
         // Set data storage

@@ -7,7 +7,7 @@
                 var bld = new ProcessBuilder(args);
                 bld.directory(work);
                 bld.redirectErrorStream(true);
-                var env = bld.environment();
+                bld.environment().putAll(env);
                 var proc = bld.start();
                 var is = proc.getInputStream();
                 var isr = new InputStreamReader(is);
