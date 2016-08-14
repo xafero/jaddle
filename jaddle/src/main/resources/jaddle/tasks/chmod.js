@@ -8,10 +8,11 @@
 				files = FileUtils.listFiles(given, null, true);
 			for each (var file in files) {
 				var executable = file.canExecute();
-				if (!executable)
+				if (!executable) {
 					file.setExecutable(true, true);
-				executable = file.canExecute();
-				print("Executable '" + file + "' ? " + (executable ? "yes" : "no"));
+					executable = file.canExecute();
+					print("Executable '" + file + "' ? " + (executable ? "yes" : "no"));
+				}
 			}
 		};
 		return {

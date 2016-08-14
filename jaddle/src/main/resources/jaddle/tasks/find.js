@@ -17,11 +17,14 @@
 		};
 		return {
 			exec : function(work, args, env) {
+				var ret = [];
 				for (var i = 0; i < args.length; i++) {
 					var arg = args[i];
 					var res = find(work, arg);
 					print(arg + ' = ' + res);
+					ret.push(res);
 				}
+				return ret;
 			}
 		}
 	}

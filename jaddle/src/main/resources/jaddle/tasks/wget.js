@@ -18,10 +18,13 @@
 		};
         return {
             exec: function (work, args, env) {
+            	var res = [];
 				for (var i = 0; i < args.length; i++) {
 					var url = args[i];
-					download(work, URI.create(url));
+					var file = download(work, URI.create(url));
+					res.push(file);
 				}
+				return res;
             }
         }
     }

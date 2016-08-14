@@ -34,6 +34,7 @@
 				return input;
 		};
 		var unpack = function(root, file, overwrite) {
+			var list = [];
 			var kind = determine(file);
 			var input = new FileInputStream(file);
 			var pack = detect(kind, input);
@@ -42,12 +43,13 @@
 			var entry;
 			while ((entry = ark.getNextEntry()) != null) {
 				var name = new File(root, entry.getName());
+				list.push(name);
 				i++;
 				if (name.exists() && name.canRead()) {
 					if (i == 1 && !overwrite) {
 						print(" Skipped extraction, '" + name.getName()
 								+ "' exists!");
-						return;
+						return list;
 					}
 					continue;
 				}
@@ -64,13 +66,17 @@
 			ark.close();
 			pack.close();
 			input.close();
+			return list;
 		};
 		return {
 			exec : function(work, args, env) {
+				var res = [];
 				for (var i = 0; i < args.length; i++) {
 					var path = args[i];
-					unpack(work, new File(path), false);
+					var files = unpack(work, new File(path), false);
+					res.push(files);
 				}
+				return res;
 			}
 		}
 	}
