@@ -1,5 +1,6 @@
 (function () {
-    var imports = new JavaImporter(java.lang, java.io);
+    var imports = new JavaImporter(java.lang, java.io,
+            com.xafero.jaddle.io);
 
     with (imports) {
         return {
@@ -9,6 +10,8 @@
                 bld.redirectErrorStream(true);
                 bld.environment().putAll(env);
                 var proc = bld.start();
+                var pusher = new OutputPusher(proc.getOutputStream());
+                pusher.pushln(env.get('STD_IN'), '#');
                 var is = proc.getInputStream();
                 var isr = new InputStreamReader(is);
                 var br = new BufferedReader(isr);
@@ -17,6 +20,7 @@
                     print(line);
                 var exitValue = proc.waitFor();
                 print(exitValue);
+                pusher.close();
             }
         }
     }
