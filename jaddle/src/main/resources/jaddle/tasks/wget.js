@@ -3,7 +3,9 @@
 
     with (imports) {
 		var download = function (work, url) {
-			var file = new File(work, url.toURL().getFile());
+			var urlPart = url.toURL().getFile();
+			var name = urlPart.substring(urlPart.lastIndexOf('/') + 1);
+			var file = new File(work, name);
 			if (file.exists() && file.canRead())
 				return file;
 			var input = url.toURL().openStream();
@@ -18,7 +20,7 @@
 		};
         return {
             exec: function (work, args, env) {
-            	var res = [];
+				var res = [];
 				for (var i = 0; i < args.length; i++) {
 					var url = args[i];
 					var file = download(work, URI.create(url));
