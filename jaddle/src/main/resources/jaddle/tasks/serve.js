@@ -38,7 +38,10 @@
 				pool.submit(hoster);
 				// Open browser
 				for each (var addr in getAddresses()) {
-					var endpoint = (hoster.getEndpoint() + "").replace(allNet, addr.getHostAddress());
+					var escapedAddr = addr.getHostAddress();
+					if (escapedAddr.contains(":"))
+						escapedAddr = '['+escapedAddr+']';
+					var endpoint = (hoster.getEndpoint() + "").replace(allNet, escapedAddr);
 					var uri = URI.create(endpoint);
 					print(" Endpoint = " + uri);
 					Desktop.getDesktop().browse(uri);
@@ -49,6 +52,7 @@
 				pool.shutdown();
 				// System.exit(0);
 				print("Done.");
+				return pool;
 			}
 		}
 	}
