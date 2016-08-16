@@ -7,10 +7,9 @@
 			for (var i = 0; i < files.length; i++) {
 				var file = files[i];
 				var long = file.getName();
-				var name = FilenameUtils.getBaseName(file);
-				var ext = FilenameUtils.getExtension(file);
-				if ((long.equalsIgnoreCase(term) || name.equalsIgnoreCase(term))
-						&& file.canExecute())
+				// var name = FilenameUtils.getBaseName(file);
+				// var ext = FilenameUtils.getExtension(file);
+				if (long.equalsIgnoreCase(term) && file.canExecute())
 					return file;
 			}
 			return null;
