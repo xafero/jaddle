@@ -46,13 +46,15 @@
 					print(" Endpoint = " + uri);
 					Desktop.getDesktop().browse(uri);
 				}
+				// Decide...
+				if (env.get('DONT_WAIT'))
+					return pool;
 				// Wait for exit
 				print("Press any key to quit...");
 				System.in.read();
 				pool.shutdown();
-				// System.exit(0);
+				System.exit(0);
 				print("Done.");
-				return pool;
 			}
 		}
 	}
